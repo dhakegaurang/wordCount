@@ -1,6 +1,7 @@
 package wordCount.driver;
 
 import wordCount.modules.populateTree.PopulateTree;
+import wordCount.modules.wordOperations.TotalWords;
 import wordCount.treesForStrings.TreeBuilder;
 import wordCount.util.FileProcessor;
 
@@ -15,6 +16,9 @@ public class Driver {
 		pTree.populateMyTree();
 		
 		tb.printNodes(tb.getOriginalNode());
+		
+		TotalWords tw = new TotalWords();
+		tb.accept(tw);
 	}
 
 }

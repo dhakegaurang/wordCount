@@ -1,5 +1,7 @@
 package wordCount.treesForStrings;
 
+import wordCount.modules.wordOperations.VisitorI;
+
 public class TreeBuilder {
 	
 	private Node originalNode;
@@ -54,6 +56,18 @@ public class TreeBuilder {
 		}
 	}
 	
+	public int size(){
+        return size(originalNode);
+    }
+ 
+    /* computes number of nodes in tree */
+    public int size(Node node){
+        if (node == null)
+            return 0;
+        else
+            return(size(node.getLeft()) + 1 + size(node.getRight()));
+    }
+	
 	/**
 	   * This method calls printData in Node class to print nodes in inorder
 	   * @param result result object on respective output file to store result in it
@@ -67,7 +81,11 @@ public class TreeBuilder {
 			printNodes(root.getRight());	
 		}
 	}
-
+	
+	public void accept(VisitorI visitor) {
+		visitor.visit(this);
+	}
+	
 	public Node getOriginalNode() {
 		return originalNode;
 	}
