@@ -5,11 +5,13 @@ public class Node {
 	private String word;
 	private Node left;
 	private Node right;
+	private int count;
 	
 	public Node(String word){
 		this.word = word;
 		left = null;
 		right = null;
+		count = 1;
 	}
 
 	public String getWord() {
@@ -34,6 +36,14 @@ public class Node {
 
 	public void setRight(Node right) {
 		this.right = right;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	@Override

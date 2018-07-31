@@ -13,7 +13,7 @@ public class UniqueWords implements VisitorI {
 	@Override
 	public void visit(TreeBuilder tb) {
 		tb.countUniqueNodes(tb.getOriginalNode());
-		System.out.println(tb.getUniqueWord().size());
+		System.out.println("Unique Words"+tb.getUniqueWords());
 	}
 	
 	

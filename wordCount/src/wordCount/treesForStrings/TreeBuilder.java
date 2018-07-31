@@ -9,7 +9,6 @@ public class TreeBuilder {
 	
 	private Node originalNode;
 	private int uniqueWords;
-	private Set<String> uniqueWord = new HashSet();
 	public TreeBuilder() {
 		this.originalNode = null;
 		uniqueWords = 0;
@@ -18,25 +17,28 @@ public class TreeBuilder {
 	/**
 	   * This method searched required node with bNumber specified or null if not found
 	   * @param id This is bNumber to be searched in the node
-	   * @return None Since this method has void return type
+	   * @return boolean returns true if node is found otherwise returns false
 	   */
-	public Node searchNode(String word){
-		
+	public boolean searchMyNode(String word){
 		Node current = originalNode;
 		while(current!=null){
 			if(word.compareTo(current.getWord()) == 0){	
-				return current;
+				return true;
 			}else if(word.compareTo(current.getWord()) > 0){
-				current = current.getLeft();
-			}else if(word.compareTo(current.getWord()) < 0){
 				current = current.getRight();
+			}else if(word.compareTo(current.getWord()) < 0){
+				current = current.getLeft();
 			}
 		}
-		return null;	
+		return false;
 	}
-	
+
 	public void insert(String word){
+		
 		Node newNode = new Node(word);
+		if(searchMyNode(word)) {
+			newNode.setCount(0);
+		}
 		if(originalNode==null){
 			originalNode = newNode;
 			return;
@@ -45,16 +47,16 @@ public class TreeBuilder {
 		Node parent = null;
 		while(true){
 			parent = current;
-			if(word.compareTo(current.getWord()) < 0) { // if(id<current.data){				
+			if(word.compareTo(current.getWord()) < 0) { 
 				current = current.getLeft();
 				if(current==null){
-					parent.setLeft(newNode); //parent.left = newNode;
+					parent.setLeft(newNode);
 					return;
 				}
 			}else{
 				current = current.getRight();
 				if(current==null){
-					parent.setRight(newNode); //parent.right = newNode;
+					parent.setRight(newNode);
 					return;
 				}
 			}
@@ -88,37 +90,12 @@ public class TreeBuilder {
 	}
 	
 	public void countUniqueNodes(Node root){
-		/*if(root!=null){
-			if(root.getLeft() != null && root.getRight() != null) {
-				if(!(root.getLeft().getWord().equals(root.getWord()) || root.getRight().getWord().equals(root.getWord()))) {
-					uniqueWords++;
-				}
-			}
-			else if(root.getLeft() != null && root.getRight() == null) {
-				if(!root.getLeft().getWord().equals(root.getWord())) {
-					uniqueWords++;
-				}
-			}
-			else if(root.getRight() != null && root.getLeft() == null) {
-				if(!root.getRight().getWord().equals(root.getWord())) {
-					uniqueWords++;
-				}
-			}
-			
-			countUniqueNodes(root.getLeft());
-			System.out.println(root.getWord());
-			//uniqueWords++;
-			if(root.getRight() != null) {	
-				if(!root.getWord().equals(root.getRight().getWord())) {
-					uniqueWords++;
-				}
-			}
-			countUniqueNodes(root.getRight());
-		}*/
-		//System.out.println("Unique Words=>"+uniqueWords);
+		
 		if(root!=null){
 			countUniqueNodes(root.getLeft());
-			uniqueWord.add(root.getWord());
+			if(root.getCount() == 1) {
+				uniqueWords++;
+			}
 			countUniqueNodes(root.getRight());	
 		}
 	}
@@ -135,12 +112,12 @@ public class TreeBuilder {
 		this.originalNode = originalNode;
 	}
 
-	public Set<String> getUniqueWord() {
-		return uniqueWord;
+	public int getUniqueWords() {
+		return uniqueWords;
 	}
 
-	public void setUniqueWord(Set<String> uniqueWord) {
-		this.uniqueWord = uniqueWord;
+	public void setUniqueWords(int uniqueWords) {
+		this.uniqueWords = uniqueWords;
 	}
 	
 }
