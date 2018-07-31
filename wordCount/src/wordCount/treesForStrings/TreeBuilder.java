@@ -1,13 +1,18 @@
 package wordCount.treesForStrings;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import wordCount.modules.wordOperations.VisitorI;
 
 public class TreeBuilder {
 	
 	private Node originalNode;
-	
+	private int uniqueWords;
+	private Set<String> uniqueWord = new HashSet();
 	public TreeBuilder() {
 		this.originalNode = null;
+		uniqueWords = 0;
 	}
 	
 	/**
@@ -82,6 +87,42 @@ public class TreeBuilder {
 		}
 	}
 	
+	public void countUniqueNodes(Node root){
+		/*if(root!=null){
+			if(root.getLeft() != null && root.getRight() != null) {
+				if(!(root.getLeft().getWord().equals(root.getWord()) || root.getRight().getWord().equals(root.getWord()))) {
+					uniqueWords++;
+				}
+			}
+			else if(root.getLeft() != null && root.getRight() == null) {
+				if(!root.getLeft().getWord().equals(root.getWord())) {
+					uniqueWords++;
+				}
+			}
+			else if(root.getRight() != null && root.getLeft() == null) {
+				if(!root.getRight().getWord().equals(root.getWord())) {
+					uniqueWords++;
+				}
+			}
+			
+			countUniqueNodes(root.getLeft());
+			System.out.println(root.getWord());
+			//uniqueWords++;
+			if(root.getRight() != null) {	
+				if(!root.getWord().equals(root.getRight().getWord())) {
+					uniqueWords++;
+				}
+			}
+			countUniqueNodes(root.getRight());
+		}*/
+		//System.out.println("Unique Words=>"+uniqueWords);
+		if(root!=null){
+			countUniqueNodes(root.getLeft());
+			uniqueWord.add(root.getWord());
+			countUniqueNodes(root.getRight());	
+		}
+	}
+	
 	public void accept(VisitorI visitor) {
 		visitor.visit(this);
 	}
@@ -92,6 +133,14 @@ public class TreeBuilder {
 
 	public void setOriginalNode(Node originalNode) {
 		this.originalNode = originalNode;
+	}
+
+	public Set<String> getUniqueWord() {
+		return uniqueWord;
+	}
+
+	public void setUniqueWord(Set<String> uniqueWord) {
+		this.uniqueWord = uniqueWord;
 	}
 	
 }

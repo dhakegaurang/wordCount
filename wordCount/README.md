@@ -39,3 +39,5 @@ References:
 ------------------------------------------------------------------------
 https://algorithms.tutorialhorizon.com/binary-search-tree-complete-implementation/
 
+https://www.geeksforgeeks.org/write-a-c-program-to-calculate-size-of-a-tree/
+

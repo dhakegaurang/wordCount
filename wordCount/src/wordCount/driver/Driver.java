@@ -2,6 +2,7 @@ package wordCount.driver;
 
 import wordCount.modules.populateTree.PopulateTree;
 import wordCount.modules.wordOperations.TotalWords;
+import wordCount.modules.wordOperations.UniqueWords;
 import wordCount.treesForStrings.TreeBuilder;
 import wordCount.util.FileProcessor;
 
@@ -18,7 +19,9 @@ public class Driver {
 		tb.printNodes(tb.getOriginalNode());
 		
 		TotalWords tw = new TotalWords();
+		UniqueWords uw = new UniqueWords();
 		tb.accept(tw);
+		tb.accept(uw);
 	}
 
 }
