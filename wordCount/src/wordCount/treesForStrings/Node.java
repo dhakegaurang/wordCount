@@ -1,17 +1,28 @@
 package wordCount.treesForStrings;
 
+import wordCount.util.MyLogger;
+/**
+ * The  program implements an application that
+ * Node ,declartion for tree elements and its structure
+ * @author  Gaurang Dhake,Manu Sharma
+ * @version 1.0
+ * @since   08-03-2018
+ */
 public class Node {
-
+	private MyLogger.DebugLevel var;
 	private String word;
 	private Node left;
 	private Node right;
 	private int count;
-	
+
+
 	public Node(String word){
+		this.var = MyLogger.DebugLevel.Node;
 		this.word = word;
 		left = null;
 		right = null;
-		count = 1;
+		count = 1; // setting value 1 as default considering it is unique node
+		MyLogger.writeMessage("In Node class:",var);
 	}
 
 	public String getWord() {

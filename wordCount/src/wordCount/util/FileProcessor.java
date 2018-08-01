@@ -8,18 +8,20 @@ import java.io.IOException;
 /**
 * InputProcessor program is responsible for parsing input line by line
 *
-* @author  Gaurang Dhake
+* @author  Gaurang Dhake,Manu Sharma
 * @version 1.0
-* @since   07/28/2018 
+* @since   08/03/2018
 */
 public class FileProcessor {
 	private String inputFilePath;
 	private BufferedReader bReaderObj;
-	
+	private MyLogger.DebugLevel var;
 	public FileProcessor(String inputFilePath) {
 		this.inputFilePath = inputFilePath;
 		try {
+			this.var = MyLogger.DebugLevel.FILE_PROCESSOR;
 			bReaderObj = new BufferedReader(new FileReader(inputFilePath));
+			MyLogger.writeMessage("In File processor class:",var);
 		} 
 		catch (FileNotFoundException e) {
 			System.err.println("Exception: File not found!!");
@@ -28,8 +30,9 @@ public class FileProcessor {
 		}
 	}
 	/**
-	   * This is nextInt method reads input file line by line
-	   * @return int returns one integer per line each time
+	   * This is readLine method reads input file line by line
+	   * @return String returns one String per line each time
+	 * 	using any whitespace as the criteria to delimit words
 	   */
 	public String readLine() {
 		try{

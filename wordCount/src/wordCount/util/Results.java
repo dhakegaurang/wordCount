@@ -4,21 +4,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
 /**
 * Results program is responsible for storing results
-*
-* @author  Gaurang Dhake
+* @author  Gaurang Dhake, Manu Sharma
 * @version 1.0
-* @since   07-21-2018
+* @since   08-03-2018
 */
 public class Results implements FileDisplayInterface,StdoutDisplayInterface{
 	private String resultStr;
 	private String outputFilePath;
+	private MyLogger.DebugLevel var;
 	
 	public Results(String outputFilePath) {
+		this.var = MyLogger.DebugLevel.RESULTS;
 		this.outputFilePath = outputFilePath;
-		resultStr = "";	
+		resultStr = "";
+		MyLogger.writeMessage("In Result class:",var);
 	}
 	/**
 	   * This writeToStdout method writes result to std output

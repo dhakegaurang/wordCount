@@ -1,25 +1,31 @@
 package wordCount.treesForStrings;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import wordCount.modules.wordOperations.VisitorI;
-
+import wordCount.util.MyLogger;
+/**
+ * InputProcessor program is responsible for building tree
+ *
+ * @author  Gaurang Dhake,Manu Sharma
+ * @version 1.0
+ * @since   08/03/2018
+ */
 public class TreeBuilder {
-	
+	private MyLogger.DebugLevel var;
 	private Node originalNode;
 	private int uniqueWords;
 	private int totalCharacters;
 	
 	public TreeBuilder() {
+		this.var = MyLogger.DebugLevel.TreeBuilder;
 		this.originalNode = null;
 		uniqueWords = 0;
 		totalCharacters = 0;
+		MyLogger.writeMessage("In TreeBuilder class",var);
 	}
 	
 	/**
 	   * This method searched required node with bNumber specified or null if not found
-	   * @param id This is bNumber to be searched in the node
+	   * @param word This is bNumber to be searched in the node
 	   * @return boolean returns true if node is found otherwise returns false
 	   */
 	public boolean searchMyNode(String word){
@@ -69,7 +75,12 @@ public class TreeBuilder {
 	public int size(){
         return size(originalNode);
     }
-	
+
+	/**
+	 * This method calls size in Node class to number of nodes
+	 * @param node This is root of original tree
+	 * @return int Since this method has int return type
+	 */
     public int size(Node node){
         if (node == null)
             return 0;
@@ -79,18 +90,21 @@ public class TreeBuilder {
 	
 	/**
 	   * This method calls printData in Node class to print nodes in inorder
-	   * @param result result object on respective output file to store result in it
-	   * @param root This is root of original tree or any backup trees to start traversing the tree
+	   * @param root This is root of original tree
 	   * @return None Since this method has void return type
 	   */
-	/*public void printNodes(Node root){
+	public void printNodes(Node root){
 		if(root!=null){
 			printNodes(root.getLeft());
 			System.out.println(root.getWord());
 			printNodes(root.getRight());	
 		}
-	}*/
-	
+	}
+	/**
+	 * This method calls countUniqueNodes in Node class to Number of unique nodes
+	 * @param root This is root of original tree
+	 * @return None Since this method has void return type
+	 */
 	public void countUniqueNodes(Node root){
 		
 		if(root!=null){
@@ -101,7 +115,11 @@ public class TreeBuilder {
 			countUniqueNodes(root.getRight());	
 		}
 	}
-	
+	/**
+	 * This method calls countCharacters in Node class to Number of charcters for all nodes
+	 * @param root This is root of original tree
+	 * @return None Since this method has void return type
+	 */
 	public void countCharacters(Node root) {
 		if(root!=null){
 			countCharacters(root.getLeft());
