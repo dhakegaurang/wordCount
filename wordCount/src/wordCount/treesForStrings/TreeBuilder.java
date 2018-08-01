@@ -69,8 +69,7 @@ public class TreeBuilder {
 	public int size(){
         return size(originalNode);
     }
- 
-    /* computes number of nodes in tree */
+	
     public int size(Node node){
         if (node == null)
             return 0;
@@ -84,13 +83,13 @@ public class TreeBuilder {
 	   * @param root This is root of original tree or any backup trees to start traversing the tree
 	   * @return None Since this method has void return type
 	   */
-	public void printNodes(Node root){
+	/*public void printNodes(Node root){
 		if(root!=null){
 			printNodes(root.getLeft());
 			System.out.println(root.getWord());
 			printNodes(root.getRight());	
 		}
-	}
+	}*/
 	
 	public void countUniqueNodes(Node root){
 		
