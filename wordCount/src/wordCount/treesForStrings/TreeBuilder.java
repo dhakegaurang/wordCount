@@ -9,9 +9,12 @@ public class TreeBuilder {
 	
 	private Node originalNode;
 	private int uniqueWords;
+	private int totalCharacters;
+	
 	public TreeBuilder() {
 		this.originalNode = null;
 		uniqueWords = 0;
+		totalCharacters = 0;
 	}
 	
 	/**
@@ -100,6 +103,15 @@ public class TreeBuilder {
 		}
 	}
 	
+	public void countCharacters(Node root) {
+		if(root!=null){
+			countCharacters(root.getLeft());
+			String []word = root.getWord().split("");
+			totalCharacters += word.length;
+			countCharacters(root.getRight());	
+		}
+	}
+	
 	public void accept(VisitorI visitor) {
 		visitor.visit(this);
 	}
@@ -118,6 +130,14 @@ public class TreeBuilder {
 
 	public void setUniqueWords(int uniqueWords) {
 		this.uniqueWords = uniqueWords;
+	}
+
+	public int getTotalCharacters() {
+		return totalCharacters;
+	}
+
+	public void setTotalCharacters(int totalCharacters) {
+		this.totalCharacters = totalCharacters;
 	}
 	
 }
