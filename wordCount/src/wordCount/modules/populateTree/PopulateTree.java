@@ -29,11 +29,13 @@ public class PopulateTree {
 		
 		String line = fp.readLine();
 		while(line != null) {
-			String[] words = line.split(" ");
-			for(String word : words) {
-				tb.insert(word);
+			if(!"".equals(line)) {
+				String[] words = line.split(" ");
+				for(String word : words) {
+					tb.insert(word);
+				}
+				line = fp.readLine();
 			}
-			line = fp.readLine();
 		}
 		
 	}
