@@ -23,6 +23,8 @@ public class Node {
 		right = null;
 		count = 1; // setting value 1 as default considering it is unique node
 		MyLogger.writeMessage("In Node class:",var);
+		MyLogger.writeMessage("In Node class:",var);
+		MyLogger.writeMessage("In Node class:",var);
 	}
 
 	public String getWord() {

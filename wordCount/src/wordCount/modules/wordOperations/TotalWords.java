@@ -1,5 +1,6 @@
 package wordCount.modules.wordOperations;
 
+import wordCount.treesForStrings.Node;
 import wordCount.treesForStrings.TreeBuilder;
 import wordCount.util.MyLogger;
 import wordCount.util.Results;
@@ -13,7 +14,7 @@ import wordCount.util.Results;
 public class TotalWords implements VisitorI {
 	private Results resultObj;
 	private MyLogger.DebugLevel var;
-	
+	private TreeBuilder tb;
 	public TotalWords(Results resultObj) {
 		this.var = MyLogger.DebugLevel.TotalWords;
 		this.resultObj = resultObj;
@@ -27,7 +28,26 @@ public class TotalWords implements VisitorI {
 	 */
 	@Override
 	public void visit(TreeBuilder tb) {
-		resultObj.storeNewResult("Total Number of words: "+tb.size()+"\n");
+		this.tb = tb;
+		resultObj.storeNewResult("Total Number of words: "+size()+"\n");
 	}
-	
+	/**
+	 * This method calls size in Node class to number of nodes
+	 * @return int this method returns final size of the tree
+	 */
+	public int size(){
+        return size(tb.getOriginalNode());
+    }
+
+	/**
+	 * This method calls size in Node class to number of nodes
+	 * @param node This is root of original tree
+	 * @return int Since this method has int return type
+	 */
+    public int size(Node node){
+        if (node == null)
+            return 0;
+        else
+            return(size(node.getLeft()) + 1 + size(node.getRight()));
+    }
 }

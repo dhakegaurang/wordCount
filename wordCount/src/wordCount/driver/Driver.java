@@ -73,7 +73,6 @@ public class Driver {
             	
                 MyLogger.setDebugValue(debugValue);
                 long startTime = System.currentTimeMillis();
-                System.out.println("Start:"+startTime);
                 for (int i = 1; i <= iterations; i++) {
                     resultObj = new Results(outputFilePath);
                     FileProcessor fp = new FileProcessor(inputFilePath);
@@ -91,7 +90,6 @@ public class Driver {
                     resultObj.writeToFile(resultObj.getResultStr());
                 }
                 long finishTime = System.currentTimeMillis();
-                System.out.println("Finish:"+finishTime);
                 long total_time = (finishTime - startTime) / iterations;
                 
                 resultObj.writeToStdout("Total Time:" + total_time + "ms");

@@ -1,5 +1,6 @@
 package wordCount.modules.wordOperations;
 
+import wordCount.treesForStrings.Node;
 import wordCount.treesForStrings.TreeBuilder;
 import wordCount.util.MyLogger;
 import wordCount.util.Results;
@@ -13,10 +14,12 @@ import wordCount.util.Results;
 public class TotalCharacters implements VisitorI {
 	private Results resultObj;
 	private MyLogger.DebugLevel var;
+	private int totalCharacters;
 	
 	public TotalCharacters(Results resultObj) {
 		this.var = MyLogger.DebugLevel.TotalCharacters;
 		this.resultObj = resultObj;
+		this.totalCharacters = 0;
 		MyLogger.writeMessage("In TotalCharacter class",var);
 	}
 	/**
@@ -27,8 +30,21 @@ public class TotalCharacters implements VisitorI {
 	 */
 	@Override
 	public void visit(TreeBuilder tb) {
-		tb.countCharacters(tb.getOriginalNode());
-		resultObj.storeNewResult("Total Number of characters: "+tb.getTotalCharacters());
+		countCharacters(tb.getOriginalNode());
+		resultObj.storeNewResult("Total Number of characters: "+totalCharacters);
 	}
 
+	/**
+	 * This method calls countCharacters in Node class to Number of charcters for all nodes
+	 * @param root This is root of original tree
+	 * @return None Since this method has void return type
+	 */
+	public void countCharacters(Node root) {
+		if(root!=null){
+			countCharacters(root.getLeft());
+			String []word = root.getWord().split("");
+			totalCharacters += word.length;
+			countCharacters(root.getRight());	
+		}
+	}
 }

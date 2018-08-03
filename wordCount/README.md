@@ -10,7 +10,7 @@ ant -buildfile src/build.xml all
 -----------------------------------------------------------------------
 ## To run by specifying arguments from command line 
 ## We will use this to run your code
-ant -buildfile src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=2
+ant -buildfile src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=2 -Darg3=4
 
 -----------------------------------------------------------------------
 
@@ -33,11 +33,14 @@ term of Big O complexity (time and/or space)
 
 Big O Time complexity:
 -----------------------------------------------------------------------
+Time complexity : O(n)
+
+Explanation for Design Pattern Selection:
+-----------------------------------------------------------------------
+
 
 
 References:
 ------------------------------------------------------------------------
 https://algorithms.tutorialhorizon.com/binary-search-tree-complete-implementation/
-
 https://www.geeksforgeeks.org/write-a-c-program-to-calculate-size-of-a-tree/
-

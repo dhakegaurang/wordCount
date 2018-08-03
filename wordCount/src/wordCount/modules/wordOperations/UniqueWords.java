@@ -1,5 +1,6 @@
 package wordCount.modules.wordOperations;
 
+import wordCount.treesForStrings.Node;
 import wordCount.treesForStrings.TreeBuilder;
 import wordCount.util.MyLogger;
 import wordCount.util.Results;
@@ -13,9 +14,12 @@ import wordCount.util.Results;
 public class UniqueWords implements VisitorI {
 	private Results resultObj;
 	private MyLogger.DebugLevel var;
+	private int uniqueWords;
+	
 	public UniqueWords(Results resultObj) {
 		this.var = MyLogger.DebugLevel.UniqueWords;
 		this.resultObj = resultObj;
+		this.uniqueWords = 0;
 		MyLogger.writeMessage("In Unique Words class",var);
 	}
 	/**
@@ -26,9 +30,23 @@ public class UniqueWords implements VisitorI {
 	 */
 	@Override
 	public void visit(TreeBuilder tb) {
-		tb.countUniqueNodes(tb.getOriginalNode());
-		resultObj.storeNewResult("Total Number of unique words: "+tb.getUniqueWords()+"\n");
+		countUniqueNodes(tb.getOriginalNode());
+		resultObj.storeNewResult("Total Number of unique words: "+uniqueWords+"\n");
 	}
 	
-	
+	/**
+	 * This method calls countUniqueNodes in Node class to Number of unique nodes
+	 * @param root This is root of original tree
+	 * @return None Since this method has void return type
+	 */
+	public void countUniqueNodes(Node root){
+		
+		if(root!=null){
+			countUniqueNodes(root.getLeft());
+			if(root.getCount() == 1) {
+				uniqueWords++;
+			}
+			countUniqueNodes(root.getRight());	
+		}
+	}
 }
